@@ -1,11 +1,11 @@
-''' Classroom Timetable Generator (PS No. 75) '''
+# Classroom Timetable Generator (PS No. 75) 
 
 DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 
 def get_input():
     ''' number of days (1 - 6) '''
-    
+
     while True:
         try:
             days = int(input("Enter number of days (1 to 6): "))
@@ -25,7 +25,7 @@ def get_input():
         except ValueError:
             print("Invalid input. Enter a whole number.")
 
-    ''' subjects and weekly periods (keeps entry order for tie-breaking) '''
+    # subjects and weekly periods :
 
     subjects = []
     seen = []
@@ -45,7 +45,6 @@ def get_input():
                 continue
             break
 
-        ''' Comma-separated input on one line '''
 
         if "," in line:
             parts = line.split(",")
@@ -87,7 +86,7 @@ def get_input():
                 break
             continue
 
-        ''' One-by-one input: "Maths 3" or just "Maths" '''
+        # One-by-one input: "Maths 3" or just "Maths"
 
         words = line.rsplit(None, 1)
         if len(words) == 2:
@@ -105,7 +104,7 @@ def get_input():
             except ValueError:
                 pass
 
-        ''' If only subject name was given,  periods: '''
+        # If only subject name was given,  periods: 
 
         name = line
         if name.lower() in seen:
@@ -138,7 +137,6 @@ def validate(days, periods_per_day, subjects):
         print(f"Error: Total weekly periods ({total_periods}) must equal available slots ({total_slots}).")
         return False
 
-    ''' if any subject exceeds 2 periods per day across the week '''
     for name, count in subjects:
         if count > days * 2:
             day_word = "day" if days == 1 else "days"
@@ -159,7 +157,8 @@ def generate_timetable(days, periods_per_day, subjects):
     timetable = []
 
     for d in range(days):
-        ''' Now TRacking how many times each subject is used today '''
+
+        # Now TRacking how many times each subject is used today '''
 
         used_today = {}
         for name in order:
@@ -171,7 +170,7 @@ def generate_timetable(days, periods_per_day, subjects):
             best_subject = None
             best_left = 0
 
-            ''' Picking eligible subject with most periods left (first entered wins ties) '''
+            # Picking eligible subject with most periods left 
 
             for name in order:
                 if remaining[name] > 0 and used_today[name] < 2:
