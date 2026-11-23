@@ -4,7 +4,7 @@ DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 
 def get_input():
-    ''' number of days (1 - 6) '''
+    # number of days 
 
     while True:
         try:
