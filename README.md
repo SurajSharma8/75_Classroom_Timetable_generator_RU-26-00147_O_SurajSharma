@@ -7,17 +7,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-################### Please show some mercy to my work before calling it AI
